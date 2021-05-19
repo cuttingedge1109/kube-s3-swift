@@ -15,7 +15,7 @@ spec:
     spec:
       containers:
       - name: s3fuse
-        image: josedevunion/kube-s3:non-aws-v1.0.0
+        image: josedevunion/kube-s3:non-aws-v1.0.1
 #        imagePullPolicy: IfNotPresent
         imagePullPolicy: Always
         lifecycle:
@@ -28,6 +28,9 @@ spec:
             add:
             - SYS_ADMIN
         # use ALL  entries in the config map as environment variables
+        env:
+        - name: VERBOSE
+          value: "true"
         envFrom:
         - secretRef:
             name: s3-config
